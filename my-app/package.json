@@ -2,6 +2,7 @@
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
+  "proxy": "https://military-asset-management-system-gtah.onrender.com",
   "dependencies": {
     "@react-icons/all-files": "^4.1.0",
     "@testing-library/dom": "^10.4.0",
