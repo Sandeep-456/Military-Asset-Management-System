@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import api from '../../services/api';
 import './index.css';
 
 function LoginPage() {
@@ -11,7 +11,7 @@ function LoginPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('https://military-asset-management-system-gtah.onrender.com/api/login', {
+      const res = await api.post('https://military-asset-management-system-gtah.onrender.com/api/login', {
         username,
         password
       }, {

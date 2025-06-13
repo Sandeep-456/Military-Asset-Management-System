@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import api from '../../services/api';
 import './index.css';
 import { Bar, Pie } from 'react-chartjs-2';
 import {
@@ -36,7 +36,7 @@ function Dashboard() {
     const fetchDashboardData = async () => {
       const token = localStorage.getItem('token');
       try {
-        const res = await axios.get('/api/dashboard', {
+        const res = await api.get('/api/dashboard', {
           headers: { Authorization: `Bearer ${token}` },
           params: filters
         });
@@ -56,7 +56,7 @@ function Dashboard() {
   const handleNetMovementClick = async () => {
     const token = localStorage.getItem('token');
     try {
-      const res = await axios.get('/api/dashboard/details', {
+      const res = await api.get('/api/dashboard/details', {
         headers: { Authorization: `Bearer ${token}` },
         params: filters
       });

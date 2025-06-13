@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../../services/api';
 import './index.css';
 
 function Transfers() {
@@ -11,7 +11,7 @@ function Transfers() {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    axios.get('/api/transfers', {
+    api.get('/api/transfers', {
       headers: { Authorization: `Bearer ${token}` }
     })
     .then(res => setTransfers(res.data))
@@ -25,7 +25,7 @@ function Transfers() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const token = localStorage.getItem('token');
-    axios.post('/api/transfers', formData, {
+    api.post('/api/transfers', formData, {
       headers: { Authorization: `Bearer ${token}` }
     })
     .then(res => {

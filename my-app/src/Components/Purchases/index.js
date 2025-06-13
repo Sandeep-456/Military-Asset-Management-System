@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../../services/api';
 import './index.css'
 
 function Purchases() {
@@ -31,7 +31,7 @@ function Purchases() {
   // Fetch all purchases
   const fetchData = async () => {
     const token = localStorage.getItem('token');
-    const res = await axios.get('/api/purchases', {
+    const res = await api.get('/api/purchases', {
       headers: { Authorization: `Bearer ${token}` }
     });
     setPurchases(res.data);
@@ -54,7 +54,7 @@ function Purchases() {
     const totalCost = parseFloat(formData.quantity || 0) * parseFloat(formData.unitCost || 0);
     const fullData = { ...formData, totalCost };
 
-    await axios.post('/api/purchases', fullData, {
+    await api.post('/api/purchases', fullData, {
       headers: { Authorization: `Bearer ${token}` }
     });
 

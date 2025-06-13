@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../../services/api';
 import { useRefresh } from '../../RefreshContext';
 import './index.css'; // ✅ Import the stylesheet
 
@@ -13,7 +13,7 @@ function Expenditures() {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    axios.get('/api/expenditures', {
+    api.get('/api/expenditures', {
       headers: { Authorization: `Bearer ${token}` }
     })
     .then(res => setExpenditures(res.data))
@@ -32,7 +32,7 @@ function Expenditures() {
     const token = localStorage.getItem('token');
 
     try {
-      const res = await axios.post('/api/expenditures', formData, {
+      const res = await api.post('/api/expenditures', formData, {
         headers: { Authorization: `Bearer ${token}` }
       });
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../../services/api';
 import { useRefresh } from '../../RefreshContext';
 import './index.css'; // ✅ Make sure to import your CSS
 
@@ -13,7 +13,7 @@ function Assignments() {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    axios.get('/api/assignments', {
+    api.get('/api/assignments', {
       headers: { Authorization: `Bearer ${token}` }
     })
     .then(res => setAssignments(res.data))
@@ -32,7 +32,7 @@ function Assignments() {
     const token = localStorage.getItem('token');
 
     try {
-      const res = await axios.post('/api/assignments', formData, {
+      const res = await api.post('/api/assignments', formData, {
         headers: { Authorization: `Bearer ${token}` }
       });
 
