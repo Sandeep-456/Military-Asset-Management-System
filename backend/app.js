@@ -10,10 +10,24 @@ const dashboardRoute = require('./routes/dashboard');
 const authenticateToken = require('./auth/auth');
 
 const app = express();
+
+const allowedOrigins = [
+  'http://localhost:3000',
+  'https://military-asset-management-system-1.onrender.com'
+];
+
 app.use(cors({
-  origin: 'https://military-asset-management-system-1.onrender.com',
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization']}));
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
 app.use(bodyParser.json());
 
 // Public login route
