@@ -11,7 +11,7 @@ const authenticateToken = require('./auth/auth');
 
 const app = express();
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: 'https://military-asset-management-system-1.onrender.com',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']}));
 app.use(bodyParser.json());
